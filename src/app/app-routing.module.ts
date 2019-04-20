@@ -14,6 +14,10 @@ const routes: Routes = [
   {
     path: 'blog',
     loadChildren: './post/post.module#PostModule'
+  },
+  {
+    path: 'user',
+    loadChildren: './user/user.module#UserModule'
   }
 ];
 

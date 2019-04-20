@@ -1,0 +1,13 @@
+ion-grid {
+	height: 100%;
+}
+ion-row	{
+	height: 80%;
+	align-items: center;
+	text-align: center;
+}
+ion-thumbnail {
+	--size: 150px;
+	--border-radius: 50%;
+	margin: auto;
+}
