@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Blog</ion-title>
+    <ion-buttons slot="end">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+
+      <ion-col size="12" size-sm="6" size-md="4" size-lg="3">
+        <ion-card class="post-card" routerLink="/blog/postID">
+          <ion-img src="/assets/shapes.svg"></ion-img>
+
+          <ion-card-header>
+            <ion-card-subtitle>
+              posted by Flavio Oliveira &bull; 2 min ago
+            </ion-card-subtitle>
+            <ion-card-title>Welcome to ngBlog</ion-card-title>
+          </ion-card-header>
+
+          <ion-card-content>
+            <p>Lets build an awesome application with Angular and the Ionic Framework using
+              some really cool features from Firebase.</p>
+          </ion-card-content>
+
+        </ion-card>
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>
+</ion-content>

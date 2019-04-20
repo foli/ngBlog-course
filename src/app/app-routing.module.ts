@@ -10,6 +10,10 @@ const routes: Routes = [
   {
     path: 'home',
     loadChildren: './home/home.module#HomePageModule'
+  },
+  {
+    path: 'blog',
+    loadChildren: './post/post.module#PostModule'
   }
 ];
 
