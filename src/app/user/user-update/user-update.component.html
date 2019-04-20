@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Update Profile</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="cancel()">Cancel</ion-button>
+      <ion-button (click)="save()">Save</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-thumbnail>
+          <img src="http://i.pravatar.cc/150" alt="username" />
+          <div class="avatarOverlay">
+            <label for="avatarFileInput">
+              <ion-icon name="camera"></ion-icon>
+            </label>
+            <input type="file" id="avatarFileInput" accept="image/*" (change)="updatePhotoURL($event)">
+          </div>
+        </ion-thumbnail>
+
+        <form action="">
+          <ion-list>
+            <ion-list-header>Basic Details</ion-list-header>
+            <ion-item>
+              <ion-label position="stacked">Display Name</ion-label>
+              <ion-input></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="stacked">Bio</ion-label>
+              <ion-textarea [rows]="4"></ion-textarea>
+            </ion-item>
+            <ion-item>
+              <ion-label position="stacked">Website</ion-label>
+              <ion-input></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="stacked">Twitter</ion-label>
+              <ion-input></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="stacked">Github</ion-label>
+              <ion-input></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="stacked">City</ion-label>
+              <ion-input></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="stacked">Country</ion-label>
+              <ion-input></ion-input>
+            </ion-item>
+          </ion-list>
+        </form>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
