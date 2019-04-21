@@ -19,6 +19,11 @@ export class AppComponent {
       title: 'Blog',
       url: '/blog',
       icon: 'paper'
+    },
+    {
+      title: 'Admin',
+      url: '/admin',
+      icon: 'construct'
     }
   ];
 
