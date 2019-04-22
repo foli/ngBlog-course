@@ -24,6 +24,11 @@ export class AppComponent {
       title: 'Admin',
       url: '/admin',
       icon: 'construct'
+    },
+    {
+      title: 'Auth',
+      url: '/auth',
+      icon: 'log-in'
     }
   ];
 

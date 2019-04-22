@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Login/Register</ion-title>
+    <ion-buttons slot="end">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="ion-padding" *ngIf="authSvc.user$ | async as user; else login">
+    <p>Hello {{ user.displayName }}</p>
+    <ion-button routerLink="/user/{{user.uid}}">View Profile</ion-button>
+    <ion-button (click)="authSvc.logout()">Logout</ion-button>
+  </div>
+
+
+  <ng-template #login>
+    <div class="ion-padding">
+      <ion-button (click)="loginWithGoogle()">
+        <ion-icon name="logo-google" slot="start"></ion-icon>
+        Google
+      </ion-button>
+    </div>
+  </ng-template>
+
+
+</ion-content>
