@@ -1,5 +1,7 @@
 {
   "projects": {
-    "default": "ng-blog-en"
+    "default": "ng-blog-en",
+    "dev": "ng-blog-en",
+    "prod": "ng-blog-en"
   }
 }
