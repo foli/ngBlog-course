@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  baseURL: 'http://localhost:4200',
   firebase: {
     apiKey: "AIzaSyBaI764OApqF81-fXberW5qpU_SaRgVPZE",
     authDomain: "ng-blog-en.firebaseapp.com",

@@ -9,3 +9,12 @@
 @import '~@ionic/angular/css/text-alignment.css';
 @import '~@ionic/angular/css/text-transformation.css';
 @import '~@ionic/angular/css/flex-utils.css';
+
+ion-item {
+	--highlight-color-focused: var(--ion-color-warning);
+	--highlight-color-invalid: var(--ion-color-danger);
+	--highlight-color-valid: var(--ion-color-primary);
+
+	--color: var(--ion-color-light-contrast);
+	--background-focused: var(--ion-color-light);
+}

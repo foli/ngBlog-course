@@ -11,21 +11,38 @@
 </ion-header>
 
 <ion-content>
-  <div class="ion-padding" *ngIf="authSvc.user$ | async as user; else login">
-    <p>Hello {{ user.displayName }}</p>
-    <ion-button routerLink="/user/{{user.uid}}">View Profile</ion-button>
-    <ion-button (click)="authSvc.logout()">Logout</ion-button>
-  </div>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+
+        <ion-text color="secondary">
+          <h1>Login</h1>
+          <p>Welcome to ngBlog</p>
+        </ion-text>
+
+        <ion-item color="light">
+          <ion-input type="email" [formControl]="email" placeholder="Email" required></ion-input>
+        </ion-item>
+        <ion-button class="ion-margin-top" expand="block" fill="outline" (click)="sendEmailLink()">Send Link</ion-button>
+
+        <ion-row>
+          <ion-col>
+            <ion-button size="small" (click)="loginWithGoogle()" fill="outline" expand="block">
+              <ion-icon slot="start" name="logo-google"></ion-icon>
+              Google
+            </ion-button>
+          </ion-col>
+          <ion-col>
+            <ion-button size="small" (click)="loginWithTwitter()" fill="outline" expand="block">
+              <ion-icon slot="start" name="logo-twitter" class="twitter"></ion-icon>
+              Twitter
+            </ion-button>
+          </ion-col>
+        </ion-row>
 
 
-  <ng-template #login>
-    <div class="ion-padding">
-      <ion-button (click)="loginWithGoogle()">
-        <ion-icon name="logo-google" slot="start"></ion-icon>
-        Google
-      </ion-button>
-    </div>
-  </ng-template>
-
-
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

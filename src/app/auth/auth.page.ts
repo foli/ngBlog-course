@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './auth.service';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-auth',
@@ -8,9 +9,26 @@ import { AuthService } from './auth.service';
 })
 export class AuthPage implements OnInit {
 
+  email = new FormControl('', [Validators.required, Validators.email])
+
   constructor(public authSvc: AuthService) { }
 
   ngOnInit() {
+  }
+
+  public async sendEmailLink() {
+    try {
+      await this.authSvc.sendEmailLink(this.email.value)
+      if(this.email.valid) {
+        console.log(this.email.status)
+        this.email.reset()
+        console.log('We sent you an email with the login link.');
+      } else {
+        console.log("no email")
+      }
+    } catch (error) {
+      console.log(error.code, error.message)
+    }
   }
 
   loginWithGoogle() {
