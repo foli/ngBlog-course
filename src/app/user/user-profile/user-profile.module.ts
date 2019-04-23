@@ -1,10 +1,7 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 
-import { IonicModule } from '@ionic/angular';
-
+import { SharedModule } from 'src/app/shared/shared.module';
 import { UserProfilePage } from './user-profile.page';
 import { UserUpdateComponent } from '../user-update/user-update.component';
 
@@ -17,9 +14,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
+    SharedModule,
     RouterModule.forChild(routes)
   ],
   declarations: [UserProfilePage, UserUpdateComponent],
