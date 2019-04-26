@@ -10,18 +10,22 @@
 </ion-header>
 
 <ion-content>
-    <div class="ion-padding" *ngIf="authSvc.user$ | async as user; else login">
-        <p>Hello {{ user.displayName }}</p>
-        <ion-button routerLink="/user/{{user.uid}}">View Profile</ion-button>
-        <ion-button (click)="authSvc.logout()">Logout</ion-button>
-      </div>
-    
-    
-      <ng-template #login>
-        <div class="ion-padding">
-          <ion-button routerLink="/auth">
-            Login
-          </ion-button>
-        </div>
-      </ng-template>
+  <div class="ion-padding" *ngIf="authSvc.user$ | async as user; else login">
+    <p>Hello {{ user.displayName }}</p>
+    <ion-button routerLink="/user/{{user.uid}}">View Profile</ion-button>
+    <ion-button (click)="authSvc.logout()">Logout</ion-button>
+  </div>
+
+
+  <ng-template #login>
+    <div class="ion-padding">
+      <ion-button routerLink="/auth">
+        Login
+      </ion-button>
+    </div>
+  </ng-template>
+
+  <!-- <pre *ngIf="authSvc.user$ | async as user">
+    {{ user | json }}
+  </pre> -->
 </ion-content>

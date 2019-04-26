@@ -2,23 +2,38 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase/app';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { switchMap, tap, shareReplay } from 'rxjs/operators'
 import { environment } from '../../environments/environment';
 import { WindowService } from '../shared/window.service';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { User } from '../user/user';
 
 @Injectable({
 	providedIn: 'root'
 })
 export class AuthService {
-	public user$: Observable<firebase.User>;
+	public user$: Observable<User>;
 	private baseURL = environment.baseURL;
 
 	constructor(
 		private router: Router,
+		private afs: AngularFirestore,
 		private afAuth: AngularFireAuth,
 		private winSvc: WindowService
 	) {
-		this.user$ = this.afAuth.user;
+		this.user$ = this.afAuth.authState.pipe(
+			switchMap((user: firebase.User) => {
+				if(user) {
+					return this.afs.doc<User>(`users/${user.uid}`).valueChanges().pipe(
+						tap(data => console.log("User: ", data)),
+						shareReplay(1)
+					)
+				} else {
+					return of(null)
+				}
+			})
+		)
 	}
 
 	async sendEmailLink(email: string) {

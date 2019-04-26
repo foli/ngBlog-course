@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>User name</ion-title>
+    <ion-title *ngIf="user$ | async as user">{{user.displayName}}</ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="update()">
         <ion-icon name="create"></ion-icon>
@@ -13,16 +13,16 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content *ngIf="user$ | async as user">
   <ion-grid>
     <ion-row>
       <ion-col>
         <ion-thumbnail>
-          <img src="http://i.pravatar.cc/150" alt="">
+          <img src="{{user.photoURL}}" alt="{{user.displayName}}">
         </ion-thumbnail>
         <ion-text>
-          <h1>Username</h1>
-          <p>@twitter</p>
+          <h1>{{user.displayName}}</h1>
+          <p>@{{user.twitter}}</p>
         </ion-text>
       </ion-col>
     </ion-row>
