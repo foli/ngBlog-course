@@ -8,5 +8,20 @@
 </ion-header>
 
 <ion-content>
+  <ion-list>
+    <ion-list-header>User List</ion-list-header>
+    <ion-item color="light" *ngFor="let user of users$ | async" [routerLink]="['/user', user.uid]">
+      <ion-avatar slot="start">
+        <img [src]="user.photoURL" [alt]="user.displayName">
+      </ion-avatar>
+      <ion-label>
+        <h2>{{user.displayName}}</h2>
+        <p>{{user.uid}}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
 
+  <!-- <h2>{{ 1 + 1 }}</h2>
+  <input type="text" #myInput>
+  <p>{{ myInput.value }}</p> -->
 </ion-content>
