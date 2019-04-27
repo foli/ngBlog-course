@@ -26,7 +26,7 @@ export class AuthService {
 			switchMap((user: firebase.User) => {
 				if(user) {
 					return this.afs.doc<User>(`users/${user.uid}`).valueChanges().pipe(
-						tap(data => console.log("User: ", data)),
+						// tap(data => console.log("User: ", data)),
 						shareReplay(1)
 					)
 				} else {

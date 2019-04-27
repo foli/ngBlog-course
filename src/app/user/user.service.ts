@@ -24,4 +24,8 @@ export class UserService {
 	getQuery(): Observable<DocumentChangeAction<User>[]> {
 		return this.usersCollection.snapshotChanges();
 	}
+
+	getUser(uid: string): Observable<User> {
+		return this.usersCollection.doc<User>(uid).valueChanges();
+	}
 }

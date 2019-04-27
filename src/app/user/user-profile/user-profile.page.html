@@ -1,7 +1,10 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
+      <ion-button (click)="location.back()">
+        <ion-icon slot="icon-only"  name="arrow-back"></ion-icon>
+      </ion-button>
+      <!-- <ion-back-button></ion-back-button> -->
     </ion-buttons>
     <ion-title *ngIf="user$ | async as user">{{user.displayName}}</ion-title>
     <ion-buttons slot="end">
@@ -22,7 +25,7 @@
         </ion-thumbnail>
         <ion-text>
           <h1>{{user.displayName}}</h1>
-          <p>@{{user.twitter}}</p>
+          <p *ngIf="user.twitter">@{{user.twitter}}</p>
         </ion-text>
       </ion-col>
     </ion-row>

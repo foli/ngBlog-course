@@ -1,37 +1,47 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { UserUpdateComponent } from '../user-update/user-update.component';
-import { Observable, Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
 import { User } from '../user';
+import { switchMap, tap } from 'rxjs/operators';
+import { UserService } from '../user.service';
+import { Location } from '@angular/common';
 
 @Component({
-  selector: 'app-user-profile',
-  templateUrl: './user-profile.page.html',
-  styleUrls: ['./user-profile.page.scss'],
+	selector: 'app-user-profile',
+	templateUrl: './user-profile.page.html',
+	styleUrls: ['./user-profile.page.scss']
 })
-export class UserProfilePage implements OnInit, OnDestroy {
-	public user$: Observable<User>
-  // public user: User
-  // private userSub$: Subscription
+export class UserProfilePage implements OnInit {
+	public user$: Observable<User>;
 
-  constructor(public modalController: ModalController, private authSvc: AuthService) { }
+	constructor(
+    private route: ActivatedRoute,
+    public location: Location,
+		public modalController: ModalController,
+    private authSvc: AuthService,
+    private userSvc: UserService
+	) {}
 
-  ngOnInit() {
-    this.user$ = this.authSvc.user$
-    // this.userSub$ = this.authSvc.user$.subscribe(u => {
-    //   this.user = u
-    // })
+	ngOnInit() {
+    // let id = this.route.snapshot.paramMap.get('id');
+    // console.log(id)
+    this.getUser()
+  }
+  
+  getUser() {
+    this.user$ = this.route.paramMap.pipe(
+      switchMap((params: ParamMap) => this.userSvc.getUser(params.get('id'))),
+      tap(data => console.log("user: ", data))
+    )
   }
 
-  ngOnDestroy() {
-    // this.userSub$.unsubscribe()
-  }
-
-  async update() {
-    const modal = await this.modalController.create({
-      component: UserUpdateComponent
-    })
-    return modal.present()
-  }
+	async update() {
+		const modal = await this.modalController.create({
+			component: UserUpdateComponent
+		});
+		return modal.present();
+	}
 }
